@@ -1,33 +1,35 @@
+var phonePrePrice = 1219;
+var casePrePrice = 59;
 const iphonePlus = document.getElementById('iphonePlus');
 iphonePlus.addEventListener('click', function(){
-    var prePrice = 1219;
-    shoppingPlus('iphoneItem', 'iphonePrice', prePrice);
-    subTotalPrice();
+    shoppingPlus('iphoneItem', 'iphonePrice', phonePrePrice);
+    subTotalCalc();
     taxCalc();
+    totalCalc();
 });
 
 const iphoneMinus = document.getElementById('iphoneMinus');
 iphoneMinus.addEventListener('click', function(){
-    var prePrice = 1219;
-    shoppingMinus('iphoneItem', 'iphonePrice', prePrice);
-    subTotalPrice();
+    shoppingMinus('iphoneItem', 'iphonePrice', phonePrePrice);
+    subTotalCalc();
     taxCalc();
+    totalCalc();
 });
 
 const casePlus = document.getElementById('casePlus');
 casePlus.addEventListener('click', function(){
-    var prePrice = 59;
-    shoppingPlus('caseItem', 'casePrice', prePrice);
-    subTotalPrice()
+    shoppingPlus('caseItem', 'casePrice', casePrePrice);
+    subTotalCalc();
     taxCalc();
+    totalCalc();
 })
 
 const caseMinus = document.getElementById('caseMinus');
 caseMinus.addEventListener('click', function(){
-    var prePrice = 59;
-    shoppingMinus('caseItem', 'casePrice', prePrice);
-    subTotalPrice()
+    shoppingMinus('caseItem', 'casePrice', casePrePrice);
+    subTotalCalc();
     taxCalc();
+    totalCalc();
 })
 
 
@@ -58,8 +60,8 @@ function shoppingMinus(input, price, prePrice){
     }
 }
 
-// Main Pricing Function
-function subTotalPrice(){
+// Main Pricing Functionality
+function subTotalCalc(){
     var phonePrice = document.getElementById('iphonePrice').innerText;
     var phonePriceNum = parseInt(phonePrice);
     var casePrice = document.getElementById('casePrice').innerText;
@@ -67,13 +69,24 @@ function subTotalPrice(){
     var sum = phonePriceNum + casePriceNum;
 
     document.getElementById('subTotal').innerText = sum;
+    return sum;
 }
 
 function taxCalc(){
-    var subTotal = document.getElementById('subTotal').innerText;
-    var subTotalNum = parseInt(subTotal);
-    var tax = Math.round((subTotalNum / 100) * 3); // If its ok to use 3 p
+    var subTotalNum = subTotalCalc();
+    var tax = Math.round((subTotalNum / 100) * 3); // If its ok to use 3 percent tax.
 
     document.getElementById('tax').innerText = tax;
+    return tax;
 }
 taxCalc();
+
+function totalCalc() {
+    var subTotalAmount = subTotalCalc();
+    var taxAmount = taxCalc();
+    var total = subTotalAmount + taxAmount;
+    document.getElementById('total').innerText = total;
+}
+totalCalc();
+
+
