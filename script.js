@@ -70,7 +70,7 @@ function shoppingMinus(input, price, prePrice){
     var Quantity = document.getElementById(input).value;
     var QuantityNum = parseInt(Quantity);
     
-    if(QuantityNum > 1){
+    if(QuantityNum >= 1){
         var currentQuantity = QuantityNum - 1;
         document.getElementById(input).value = currentQuantity;
 
