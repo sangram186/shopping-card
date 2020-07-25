@@ -119,19 +119,16 @@ const price1 = document.getElementById('iphonePrice');
 const input2 = document.getElementById('caseItem');
 const price2 = document.getElementById('casePrice');
 
-input1.addEventListener('input', updateValue);
-
-function updateValue(e){
+input1.addEventListener('input', function(e){
     price1.textContent = e.target.value * phonePrePrice;
-    subTotalCalc()
+    subTotalCalc();
     taxCalc();
     totalCalc();
-}
-input2.addEventListener('input', updateValue);
+});
 
-function updateValue(e){
+input2.addEventListener('input', function(e){
     price2.textContent = e.target.value * casePrePrice;
-    subTotalCalc()
+    subTotalCalc();
     taxCalc();
     totalCalc();
-}
+});
